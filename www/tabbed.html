@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+	<script src="js/mqttws31.min.js"     type="text/javascript"></script>
+	<script src="js/jquery-3.3.1.min.js" type="text/javascript"></script>
+	<script src="js/jquery.thooClock.js" type="text/javascript"></script>
+	<script src="js/controllers.js"      type="text/javascript"></script>
+	<script src="js/tanzo_message.js"    type="text/javascript"></script>
+	<script src="js/common.js"           type="text/javascript"></script>
+
+	<style>
+		body {
+			background-color: black;
+			background-image: url("images/metal_001.jpg");
+		}
+	</style>
+
+	<script>
+
+		//*****************************************************************************
+		// Aggiorna la data
+		//*****************************************************************************
+
+		var days = ["Domenica","Lunedi","Martedi","Mercoledi","Giovedi","Venerdi","Sabato"];
+		var months = ["Gennaio","Febbraio","Marzo","Aprile","Maggio","Giugno","Luglio","Agosto","Settembre","Ottobre","Novembre","Dicembre"];
+
+		function updateDate() {
+			var d = new Date();
+			$("#date").html(days[d.getDay()] + " " +  d.getDate() + " " + months[d.getMonth()] + " " + d.getFullYear())
+		}
+
+		$(document).ready(function() {
+			//*****************************************************************************
+			// Creazione linea messaggi CM3-Panel
+			//*****************************************************************************
+			message_line = new tanzoMessage("message_line");
+			message_line.message("SCS Integration with CM3 PANEL and CM3 HOME");
+
+			//*****************************************************************************
+			// Creazione switch su CM3-Panel
+			//*****************************************************************************
+			new OnOffSwitch2 ("Salotto Lamp", "3/9",        "isw0", "scs/0/", "/status", "/command");
+			new OnOffSwitch2 ("Salotto Sud Parete",  "2/5", "isw1", "scs/0/", "/status", "/command");
+			new OnOffSwitch2 ("Salotto Neon", "6/1",        "isw2", "scs/0/", "/status", "/command");
+			new OnOffSwitch2 ("Studio",       "2/3",        "isw3", "scs/0/", "/status", "/command");
+			new OnOffSwitch2 ("Matrimoniale", "2/6",        "isw4", "scs/0/", "/status", "/command");
+			new OnOffSwitch2 ("Letto 1",      "2/9",        "isw5", "scs/0/", "/status", "/command");
+			new OnOffSwitch2 ("Letto 2",      "3/2",        "isw6", "scs/0/", "/status", "/command");
+
+			//*****************************************************************************
+			// Creazione switch su CM3-Panel
+			//*****************************************************************************
+			new OnOffSwitch2 ("Salotto Est",  "3/5", "esw0", "scs/0/", "/status", "/command");
+			new OnOffSwitch2 ("Salotto Sud",  "3/3", "esw1", "scs/0/", "/status", "/command");
+			new OnOffSwitch2 ("Cucina",       "2/1", "esw2", "scs/0/", "/status", "/command");
+			new OnOffSwitch2 ("Studio",       "2/3", "esw3", "scs/0/", "/status", "/command");
+
+			//*****************************************************************************
+			new OnOffSwitch2 ("Matrimoniale", "2/6", "esw4", "scs/0/", "/status", "/command");
+			new OnOffSwitch2 ("Letto 1",      "2/9", "esw5", "scs/0/", "/status", "/command");
+			new OnOffSwitch2 ("Letto 2",      "3/2", "esw6", "scs/0/", "/status", "/command");
+		});
+
+	</script>
+
+
+	<style>
+	body {font-family: Arial;}
+
+	/* Style the tab */
+	.tab {
+		overflow: hidden;
+		border: 1px solid #ccc;
+		background-color: #f1f1f1;
+	}
+
+	/* Style the buttons inside the tab */
+	.tab button {
+		background-color: inherit;
+		float: left;
+		border: none;
+		outline: none;
+		cursor: pointer;
+		padding: 14px 16px;
+		transition: 0.3s;
+		font-size: 17px;
+	}
+
+	/* Change background color of buttons on hover */
+	.tab button:hover {
+		background-color: #ddd;
+	}
+
+	/* Create an active/current tablink class */
+	.tab button.active {
+		background-color: #ccc;
+	}
+
+	/* Style the tab content */
+	.tabcontent {
+		display: none;
+		padding: 6px 12px;
+		border: 1px solid #ccc;
+		border-top: none;
+	}
+	</style>
+
+
+</head>
+<body>
+
+<!-- Linea di messaggi in basso -->
+<div id="message_line"></div>
+
+
+<div class="tab">
+  <button class="tablinks" onclick="openTab(event, 'internal_lights')" id="defaultOpen">Internal lights</button>
+  <button class="tablinks" onclick="openTab(event, 'external_lights')">External lights</button>
+  <button class="tablinks" onclick="openTab(event, 'services')">Services</button>
+</div>
+
+
+<div id="internal_lights" class="tabcontent" style="position: absolute; top: 15px; left:2px;">
+	<!-- Tasti -->
+	<div style="position: absolute; top: 50px; left:5px;">
+		<div id="isw0"></div>
+		<div id="isw1"></div>
+		<div id="isw2"></div>
+		<div id="isw3"></div>
+	</div>
+
+	<div style="position: absolute; top: 50px; left:310px;">
+		<div id="isw4"></div>
+		<div id="isw5"></div>
+		<div id="isw6"></div>
+		<div id="isw7"></div>
+	</div>
+</div>
+
+<div id="external_lights" class="tabcontent" style="position: absolute; top: 35px; left:15px;">
+	<!-- Tasti -->
+	<div style="position: absolute; top: 50px; left:25px;">
+		<div id="esw0"></div>
+		<div id="esw1"></div>
+		<div id="esw2"></div>
+		<div id="esw3"></div>
+	</div>
+
+	<div style="position: absolute; top: 50px; left:330px;">
+		<div id="esw4"></div>
+		<div id="esw5"></div>
+		<div id="esw6"></div>
+		<div id="isw7"></div>
+</div>
+
+<div id="services" class="tabcontent">
+  <h3>Tokyo</h3>
+  <p>Tokyo is the capital of Japan.</p>
+</div>
+
+
+<script>
+function openTab (evt, cityName) {
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+    }
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+    document.getElementById(cityName).style.display = "block";
+    evt.currentTarget.className += " active";
+}
+// Get the element with id="defaultOpen" and click on it
+document.getElementById("defaultOpen").click();
+</script>
+
+</body>
+</html>
