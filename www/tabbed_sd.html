@@ -43,15 +43,13 @@
 			//*****************************************************************************
 			// First tab, internal lights
 			//*****************************************************************************
-			new OnOffSwitch_SD ("Salotto Lamp",           "3/9", "i1_sw0", "scs/0/", "/status", "/command");
-			new OnOffSwitch_SD ("Matrimoniale soffitto",  "2/4", "i1_sw1", "scs/0/", "/status", "/command");
-			new OnOffSwitch_SD ("Salotto Neon",           "6/1", "i1_sw2", "scs/0/", "/status", "/command");
-			new OnOffSwitch_SD ("Studio",                 "2/2", "i1_sw3", "scs/0/", "/status", "/command");
-			new OnOffSwitch_SD ("Matrimoniale ovest",     "2/5", "i1_sw4", "scs/0/", "/status", "/command");
-			new OnOffSwitch_SD ("Matrimoniale soffitto",  "2/4", "i1_sw5", "scs/0/", "/status", "/command");
-			new OnOffSwitch_SD ("Letto 1 p",              "2/8", "i1_sw6", "scs/0/", "/status", "/command");
-			new OnOffSwitch_SD ("Letto 1 s",              "2/7", "i1_sw7", "scs/0/", "/status", "/command");
-			new OnOffSwitch_SD ("Letto 2 s",              "3/1", "i1_sw8", "scs/0/", "/status", "/command");
+			new OnOffSwitch_SD ("Studio",                 "2/2", "i1_sw0", "scs/0/", "/status", "/command", true);
+			new OnOffSwitch_SD ("Matrimoniale ovest",     "2/5", "i1_sw1", "scs/0/", "/status", "/command", true);
+			new OnOffSwitch_SD ("Matrimoniale soffitto",  "2/4", "i1_sw2", "scs/0/", "/status", "/command", true);
+			new OnOffSwitch_SD ("Matrimoniale presa com", "3/3", "i1_sw3", "scs/0/", "/status", "/command", true);
+			new OnOffSwitch_SD ("Letto 2 p",              "2/8", "i1_sw4", "scs/0/", "/status", "/command", true);
+			new OnOffSwitch_SD ("Letto 2 s",              "5/9", "i1_sw5", "scs/0/", "/status", "/command", true);
+			new OnOffSwitch_SD ("Letto 1 s",              "3/1", "i1_sw6", "scs/0/", "/status", "/command", true);
 
 			// Second tab, internal lights
 			//*****************************************************************************
@@ -189,7 +187,7 @@
 		<div id="i1_sw7"></div>
 	</div>
 
-	<div style="position: absolute; top: 50px; left:590px;">
+	<div style="position: absolute; top: 50px; left:610px;">
 		<div id="i1_sw8"></div>
 	</div>
 
