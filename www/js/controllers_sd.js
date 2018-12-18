@@ -308,13 +308,13 @@ class UpDownSwitchHalfSize_SD extends SCS_Controller_Base {
 
 class OnOffSwitch_SD  extends SCS_Controller_Base {
 
-	constructor(caption, address, domElementId, mqtt_base, mqtt_status, mqtt_cmd) {
+	constructor(caption, address, domElementId, mqtt_base, mqtt_status, mqtt_cmd, icon_slider = false) {
 
 		super (caption, address, domElementId, mqtt_base, mqtt_status, mqtt_cmd);
 
 		this.address = address;
 		this.state   = UpDnState.OFF;
-
+		this.icon_slider = icon_slider;
 
 		// Note: function bind() usage taken from
 		// Access class properties outside of mqtt callback scope
@@ -327,6 +327,7 @@ class OnOffSwitch_SD  extends SCS_Controller_Base {
 
 		var mangled_address = address.replace(/\//g, "-");
 
+		if (icon_slider == false) {
 		//
 		// create the HTML code that renders the GUI in the page
 		// where the object is instantiated
@@ -355,6 +356,32 @@ class OnOffSwitch_SD  extends SCS_Controller_Base {
 			    </table>
 			</div>
 		`);
+		} else {
+			$("#" + this.domElementId).html(`
+			<div style="
+				border: 1px solid black;
+				background-color: rgb(230,230,230);
+
+				border-color: light-grey;
+				width: 300px;
+				padding-top: 2px;
+				padding-bottom: 0px;
+				margin-bottom: 2px;
+				font-family: arial;
+			">
+				<table>
+					<tr>
+						<td style="padding-left: 5px;">
+							<img width="160px" src="images/slider_off.jpg" id=` + domElementId + mangled_address + `>
+						</td>
+						<td style="font-size: 18px; color: dark-grey; padding-left: 10px;">
+					    	` + caption + `
+					    </td>
+				    </tr>
+			    </table>
+			</div>
+		`);
+		}
 	}
 
 	virtualMqttMessageProcessing (mqtt_message) {
@@ -400,17 +427,29 @@ class OnOffSwitch_SD  extends SCS_Controller_Base {
 	}
 
 	set_state_off() {
-		$("#" +  this.domElementId + this.address.replace(/\//g, "-") ).attr("src","images/off.png");
+		if (this.icon_slider == false) {
+			$("#" +  this.domElementId + this.address.replace(/\//g, "-") ).attr("src","images/off.png");
+		} else {
+			$("#" +  this.domElementId + this.address.replace(/\//g, "-") ).attr("src","images/slider_off.jpg");
+		}
 		this.state = State.OFF;
 	}
 
 	set_state_on() {
-		$("#" +  this.domElementId + this.address.replace(/\//g, "-") ).attr("src","images/on.png");
+		if (this.icon_slider == false) {
+			$("#" +  this.domElementId + this.address.replace(/\//g, "-") ).attr("src","images/on.png");
+		} else {
+			$("#" +  this.domElementId + this.address.replace(/\//g, "-") ).attr("src","images/slider_on.jpg");
+		}
 		this.state = State.ON;
 	}
 
 	set_state_transition() {
-		$("#" +  this.domElementId + this.address.replace(/\//g, "-") ).attr("src","images/off.png");
+		if (this.icon_slider == false) {
+			$("#" +  this.domElementId + this.address.replace(/\//g, "-") ).attr("src","images/off.png");
+		} else {
+			$("#" +  this.domElementId + this.address.replace(/\//g, "-") ).attr("src","images/slider_off.jpg");
+		}
 		this.state = State.TRANSITION;
 	}
 }
