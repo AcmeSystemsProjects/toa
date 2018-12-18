@@ -83,14 +83,12 @@ class OnOffSwitch {
 		this.mqtt_client.connect({
 			onSuccess: this.onConnect.bind(this),
 			keepAliveInterval: 3,
-			reconnect: true,
+//			reconnect: true,
 			timeout: 3
 		});
 
 		this.mqtt_client.onConnectionLost = this.onConnectionLost.bind(this);
 		this.mqtt_client.onFailure = this.onFailure.bind(this);
-
-		OnOffSwitch.instanceCount = OnOffSwitch.instanceCount ? OnOffSwitch.instanceCount + 1 : 1;
 	}
 
 	onConnectionLost(response) {
@@ -106,8 +104,6 @@ class OnOffSwitch {
 	}
 
 	onConnect() {
-		console.log("Instance  ",  OnOffSwitch.instanceCount, " instance connected ! ");
-
 		//
 		// when connected, subscribe for status messages
 		//
@@ -244,7 +240,7 @@ class OnOffSwitch2 {
 		this.mqtt_client.connect({
 			onSuccess: this.onConnect.bind(this),
 			keepAliveInterval: 3,
-			reconnect: true,
+//			reconnect: true,
 			timeout: 3
 		});
 
@@ -403,7 +399,7 @@ class UpDownSwitch {
 		this.mqtt_client.connect({
 			onSuccess: this.onConnect.bind(this),
 			keepAliveInterval: 3,
-			reconnect: true,
+//			reconnect: true,
 			timeout: 3
 		});
 
@@ -578,12 +574,7 @@ class UpDownSwitchHalfSize {
 
 			</div>
 		`);
-
 		this.doConnect();
-
-		this.instance_id = UpDownSwitchHalfSize.instanceCount;
-
-		UpDownSwitchHalfSize.instanceCount = UpDownSwitchHalfSize.instanceCount ? UpDownSwitchHalfSize.instanceCount + 1 : 1;
 	}
 
 	doConnect() {
@@ -599,7 +590,7 @@ class UpDownSwitchHalfSize {
 		this.mqtt_client.connect({
 			onSuccess: this.onConnect.bind(this),
 			keepAliveInterval: 3,
-			reconnect: true,
+//			reconnect: true,
 			timeout: 3
 		});
 
@@ -615,8 +606,6 @@ class UpDownSwitchHalfSize {
 	}
 
 	onConnect() {
-		console.log("Instance  #",  this.instance_id, " of ", UpDownSwitchHalfSize.instanceCount, " connected ! ");
-
 		console.log("Connected." + this.caption+ "." + this.address+ ".");
 		//
 		// when connected, subscribe for status messages
@@ -726,6 +715,4 @@ class UpDownSwitchHalfSize {
 		this.state = UpDnState.FALLING;
 	}
 }
-
-UpDownSwitchHalfSize.instanceCount = 0;
 

@@ -7,7 +7,7 @@
 	<script src="js/mqttws31.min.js"     type="text/javascript"></script>
 	<script src="js/jquery-3.3.1.min.js" type="text/javascript"></script>
 	<script src="js/jquery.thooClock.js" type="text/javascript"></script>
-	<script src="js/controllers.js"      type="text/javascript"></script>
+	<script src="js/controllers2.js"      type="text/javascript"></script>
 	<script src="js/tanzo_message.js"    type="text/javascript"></script>
 	<script src="js/common.js"           type="text/javascript"></script>
 
@@ -62,6 +62,26 @@
 			new OnOffSwitch2 ("Matrimoniale", "2/6", "esw4", "scs/0/", "/status", "/command");
 			new OnOffSwitch2 ("Letto 1",      "2/9", "esw5", "scs/0/", "/status", "/command");
 			new OnOffSwitch2 ("Letto 2",      "3/2", "esw6", "scs/0/", "/status", "/command");
+
+			//*****************************************************************************
+			// blinds
+			//*****************************************************************************
+			new UpDownSwitchHalfSize ("Salotto Est",   "1/1", "bsw0", "scs/0/", "/status", "/command");
+			new UpDownSwitchHalfSize ("Salotto Sud",   "1/2", "bsw1", "scs/0/", "/status", "/command");
+			new UpDownSwitchHalfSize ("Cucina",        "5/1", "bsw2", "scs/0/", "/status", "/command");
+			new UpDownSwitchHalfSize ("Studio",        "5/2", "bsw3", "scs/0/", "/status", "/command");
+			new UpDownSwitchHalfSize ("Matrimoniale",  "5/3", "bsw4", "scs/0/", "/status", "/command");
+			new UpDownSwitchHalfSize ("Letto 1",       "5/4", "bsw5", "scs/0/", "/status", "/command");
+			new UpDownSwitchHalfSize ("Letto 2 nord",  "5/5", "bsw6", "scs/0/", "/status", "/command");
+			new UpDownSwitchHalfSize ("Letto 2 est",   "5/6", "bsw7", "scs/0/", "/status", "/command");
+			new UpDownSwitchHalfSize ("Bagno est",     "5/7", "bsw8", "scs/0/", "/status", "/command");
+
+			//*****************************************************************************
+			// blinds
+			//*****************************************************************************
+			new OnOffSwitch2 ("Scarico bagno",  "9/9", "ssw0", "scs/0/", "/status", "/command");
+
+			new UpDownSwitchHalfSize ("Tenda cucina", "6/1", "ssw1", "scs/0/", "/status", "/command");
 		});
 
 	</script>
@@ -119,6 +139,7 @@
 <div class="tab">
   <button class="tablinks" onclick="openTab(event, 'internal_lights')" id="defaultOpen">Internal lights</button>
   <button class="tablinks" onclick="openTab(event, 'external_lights')">External lights</button>
+  <button class="tablinks" onclick="openTab(event, 'blinds')">Blinds</button>
   <button class="tablinks" onclick="openTab(event, 'services')">Services</button>
 </div>
 
@@ -154,11 +175,35 @@
 		<div id="esw5"></div>
 		<div id="esw6"></div>
 		<div id="isw7"></div>
+	</div>
+</div>
+
+
+<div id="blinds" class="tabcontent" style="position: absolute; top: 65px; left:15px;">
+	<!-- Tasti -->
+	<table>
+		<tr>
+			<td><div id="bsw0"></div></td>
+		    <td><div id="bsw1"></div></td>
+		    <td><div id="bsw2"></div></td>
+		    <td><div id="bsw3"></div></td>
+		    <td><div id="bsw4"></div></td>
+		</tr>
+		<tr>
+		    <td><div id="bsw5"></div></td>
+		    <td><div id="bsw6"></div></td>
+		    <td><div id="bsw7"></div></td>
+			<td><div id="bsw8"></div></td>
+		</tr>
+	</table>
 </div>
 
 <div id="services" class="tabcontent">
-  <h3>Tokyo</h3>
-  <p>Tokyo is the capital of Japan.</p>
+	<!-- Tasti -->
+	<div style="position: absolute; top: 85px; left:5px;">
+		<div id="ssw0"></div>
+		<div id="ssw1"></div>
+	</div>
 </div>
 
 
