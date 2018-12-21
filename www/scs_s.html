@@ -11,6 +11,7 @@
 	<script src="js/jquery-3.3.1.min.js" type="text/javascript"></script>
 	<script src="js/jquery.thooClock.js" type="text/javascript"></script>
 	<script src="js/controllers_sd.js"   type="text/javascript"></script>
+	<script src="js/controllers_st_sd.js"   type="text/javascript"></script>
 	<script src="js/tanzo_message.js"    type="text/javascript"></script>
 	<script src="js/common.js"           type="text/javascript"></script>
 
@@ -91,6 +92,9 @@
 			new OnOffSwitch_SD ("* Letto 1",      "2/9", "esw5", "scs/0/", "/status", "/command");
 			new OnOffSwitch_SD ("* Letto 2",      "3/2", "esw6", "scs/0/", "/status", "/command");
 
+
+			new OnOffSwitch_SonoffTouch_Tasmota_SD
+			                   ("Scrittoio",  "sonoff-0657", "esw7", "stat", "cmnd");
 
 
 			//*****************************************************************************
@@ -181,6 +185,7 @@
 		<div id="esw4"></div>
 		<div id="esw5"></div>
 		<div id="esw6"></div>
+		<div id="esw7"></div>
 	</div>
 
 	<!-- Blinds -->
