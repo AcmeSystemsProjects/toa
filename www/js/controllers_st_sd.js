@@ -6,6 +6,7 @@
 //
 //   An object oriented evolution of TOA (C) Sergio Tanzilli
 //
+//   PowerRetain must be set to 1 (ON) on the device console
 //
 ///////////////////////////////////////////////////////////////////////
 
@@ -131,7 +132,7 @@ class OnOffSwitch_SonoffTouch_Tasmota_SD  extends Sonoff_Tasmota_Controller_Base
 		super (caption, address, domElementId, mqtt_status, mqtt_cmd);
 
 		this.address = address;
-		this.state   = UpDnState.OFF;
+		this.state   = State.OFF;
 		this.icon_slider = icon_slider;
 
 		// Note: function bind() usage taken from
@@ -233,11 +234,11 @@ class OnOffSwitch_SonoffTouch_Tasmota_SD  extends Sonoff_Tasmota_Controller_Base
 			// should ever happen
 			console.log(this.caption+ " " + this.address+ " " + "FATAL: WRONG STATUS");
 			message = new Paho.MQTT.Message("OFF");
+			this.state = State.OFF;
 			return;
 		}
 		// set the topic for the command to be sent
 		message.destinationName = this.mqtt_cmd + "/" + this.address + "/POWER";
-
 		console.log("Publishing... " + message.destinationName + " - " + message);
 
 		// send the message to the topic
