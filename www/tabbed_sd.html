@@ -53,6 +53,7 @@
 			new OnOffSwitch_SD ("Letto 1 s",              "3/1", "i1_sw6", "scs/0/", "/status", "/command", true);
 			new OnOffSwitch_SonoffTouch_Tasmota_SD ("Addobbi terrazzo",  "sonoff-0657", "i1_sw7", "stat", "cmnd", true);
 			new OnOffSwitch_SonoffTouch_Tasmota_SD ("Albero di Natale",  "sonoff-3218", "i1_sw8", "stat", "cmnd", true);
+			new OnOffSwitch_SonoffTouch_Tasmota_SD ("Sonoff touch 3268", "sonoff-3268", "i1_sw9", "stat", "cmnd", true);
 
 
 			// Second tab, internal lights
@@ -105,10 +106,22 @@
 			new UpDownSwitchHalfSize_SD ("Bagno est",     "5/7", "bsw8", "scs/0/", "/status", "/command");
 
 			//*****************************************************************************
-			// blinds
+			// motors and various
 			//*****************************************************************************
 			new OnOffSwitch_SD ("Scarico bagno",  "9/9", "ssw0", "scs/0/", "/status", "/command");
 			new UpDownSwitchHalfSize_SD ("Tenda cucina", "6/1", "ssw1", "scs/0/", "/status", "/command");
+			new OnOffSwitch_SonoffTouch_Tasmota_SD ("Sonoff relay 1583", "sonoff-1583", "ssw2", "stat", "cmnd", true);
+
+
+			//
+			// reload the page if clicked on the message bnar
+			//
+			//document.getElementById('message_line').addEventListener('click', pageReload(document), false);
+
+			$(document).on('click', '#message_line', function() {
+				document.location.reload(true);
+			});
+
 		});
 
 	</script>
@@ -190,6 +203,7 @@
 		<div id="i1_sw5"></div>
 		<div id="i1_sw6"></div>
 		<div id="i1_sw7"></div>
+		<div id="i1_sw9"></div>
 	</div>
 
 	<div style="position: absolute; top: 50px; left:610px;">
@@ -278,6 +292,7 @@
 	<div style="position: absolute; top: 85px; left:5px;">
 		<div id="ssw0"></div>
 		<div id="ssw1"></div>
+		<div id="ssw2"></div>
 	</div>
 </div>
 

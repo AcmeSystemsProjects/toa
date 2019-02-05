@@ -8,6 +8,8 @@
 //
 //   PowerRetain must be set to 1 (ON) on the device console
 //
+//   https://www.eclipse.org/paho/files/jsdoc/Paho.MQTT.Client.html
+//
 ///////////////////////////////////////////////////////////////////////
 
 class Sonoff_Tasmota_Controller_Base {
