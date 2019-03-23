@@ -31,7 +31,7 @@ class SCS_Controller_Base {
 			onSuccess: SCS_Controller_Base.onConnect.bind(SCS_Controller_Base),
 			keepAliveInterval: 3,
 			reconnect: true,
-			timeout: 3
+			timeout: 30
 		});
 
 		SCS_Controller_Base.mqtt_client.onConnectionLost = SCS_Controller_Base.onConnectionLost.bind(SCS_Controller_Base);
