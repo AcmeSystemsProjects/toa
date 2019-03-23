@@ -1,3 +1,19 @@
+# Improvement introduced in branch "montefusco"
+
+## Browser limitations on the number of WebSockets sessions allowed (per page)
+
+During the initial deployment of TOA system on my home domotic system, I discovered a major drawback in the original code that makes it unusable even on small plants (at least when using the single page paradigm).
+
+In fact, I created big pages (or tabbed pages), with much more controllers but only the first ten or twelve (browser depending) were working properly.
+So, it seems that there is a limitation in the number of WebSocket outgoing session *per page* allowed by the browser.
+In the end, I was forced to rewrite all the controllers (see js/controllers_s.js js/controllers_sd.js) in a way that they are creating one WebSocket connection for each class of controllers, instead of one for each instance.
+So the limitation is removed, as far as you are using less than ten type of different controllers in the same page.
+
+## Tasmota controller
+
+As further improvement I wrote even a Tasmota specific controller (controllers_st_sd.js), needed in order to interface few Sonoff devices in my home network.
+
+
 # Tanzo Office Automation 
 
 
