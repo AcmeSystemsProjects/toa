@@ -8,6 +8,7 @@
 	<script src="js/jquery.thooClock.js" type="text/javascript"></script>
 	<script src="js/controllers_sd.js"   type="text/javascript"></script>
 	<script src="js/controllers_st_sd.js"   type="text/javascript"></script>
+	<script src="js/controllers_sly_sd.js" type="text/javascript"></script>
 	<script src="js/tanzo_message.js"    type="text/javascript"></script>
 	<script src="js/common.js"           type="text/javascript"></script>
 
@@ -44,7 +45,8 @@
 			//*****************************************************************************
 			// First tab, internal lights
 			//*****************************************************************************
-			new OnOffSwitch_SD ("Studio",                 "2/2", "i1_sw0", "scs/0/", "/status", "/command", true);
+			new OnOffSwitch_Shelly1_SD ("Studio", "shelly1-941F5B/relay/0", "i1_sw0", "shellies", "", "/command", true);
+
 			new OnOffSwitch_SD ("Matrimoniale ovest",     "2/5", "i1_sw1", "scs/0/", "/status", "/command", true);
 			new OnOffSwitch_SD ("Matrimoniale soffitto",  "2/4", "i1_sw2", "scs/0/", "/status", "/command", true);
 			new OnOffSwitch_SD ("Matrimoniale presa com", "3/3", "i1_sw3", "scs/0/", "/status", "/command", true);
