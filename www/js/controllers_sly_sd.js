@@ -1,12 +1,11 @@
-
-
 ///////////////////////////////////////////////////////////////////////
 //
 //   Shelly Controller Base class
 //
 //   An object oriented evolution of TOA (C) Sergio Tanzilli
+//   written by Andrea Montefusco for Shelly 1 controllers
 //
-//   PowerRetain must be set to 1 (ON) on the device console
+//   Retain flag must be checked into device configuration
 //
 //   https://www.eclipse.org/paho/files/jsdoc/Paho.MQTT.Client.html
 //
@@ -79,9 +78,6 @@ class Shelly_Controller_Base {
 
 			console.log("***** Object ", i, " id: ", x.caption+ "-" + x.mqtt_base + "/" + x.address);
 
-//			if (mqtt_message.destinationName == x.mqtt_base+x.address+"/status") {
-
-
 			if (mqtt_message.destinationName == x.mqtt_base+"/"+x.address) {
 				// call "virtual" method overridden in the derived classes
 				x.virtualMqttMessageProcessing (mqtt_message);
@@ -94,33 +90,6 @@ class Shelly_Controller_Base {
 		}
 	}
 
-/*
-	constructor(caption, address, domElementId, mqtt_base, mqtt_status, mqtt_cmd) {
-		this.domElementId = domElementId;
-		this.address = address;
-		this.caption = caption;
-
-		this.mqtt_base   = mqtt_base;
-		this.mqtt_status = mqtt_status;
-		this.mqtt_cmd    = mqtt_cmd
-
-		//
-		// increase instance counter
-		// instanceCount is a class variable (i.e., a variable
-		// associated to the class and shared between all instances
-		//
-		SCS_Controller_Base.instanceCount = SCS_Controller_Base.instanceCount ? SCS_Controller_Base.instanceCount + 1 : 1;
-
-		// if we are the first instance, we start the MQTT connection
-		if (SCS_Controller_Base.instanceCount == 1) {
-			SCS_Controller_Base.doConnect();
-		}
-		// register ourselves in class instance list
-		SCS_Controller_Base.allInstances.push(this);
-	}
-
-*/
-    //          "Studio", "shelly1-941F5B/relay/0", "i1_sw0", "shellies/", "", "/command"
 	constructor(caption, address, domElementId, mqtt_base, mqtt_status, mqtt_cmd) {
 		this.domElementId = domElementId;
 		this.address = address;
@@ -155,7 +124,9 @@ Shelly_Controller_Base.allInstances = [];
 
 //////////////////////////////////////////////////////////////////////
 //
-// On Off switch for lights and other Sonoff Touch with Tasmota
+// Shelly 1
+//
+// On Off switch for lights
 //
 //
 //////////////////////////////////////////////////////////////////////
